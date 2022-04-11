@@ -21,6 +21,7 @@
 
 #include "led-matrix.h"
 #include "graphics.h"
+#include "gpio.h"
 
 // Make sure C++ is in sync with C
 static_assert(sizeof(rgb_matrix::RGBMatrix::Options) == sizeof(RGBLedMatrixOptions), "C and C++ out of sync");
@@ -301,4 +302,8 @@ void draw_circle(struct LedCanvas *c, int xx, int y, int radius, uint8_t r, uint
 void draw_line(struct LedCanvas *c, int x0, int y0, int x1, int y1, uint8_t r, uint8_t g, uint8_t b) {
   const rgb_matrix::Color col = rgb_matrix::Color(r, g, b);
   DrawLine(to_canvas(c), x0, y0, x1, y1, col);
+}
+
+int32_t get_microsecond_counter() {
+    return rgb_matrix::GetMicrosecondCounter();
 }
